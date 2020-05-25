@@ -10,10 +10,7 @@
 	},
 	"dependencies": {
 		"apollo-boost": "^0.4.9",
-		"apollo-fetch": "^0.7.0",
-		"apollo-link-http": "^1.5.17",
 		"cross-fetch": "^3.0.4",
-		"graphql": "^15.0.0",
 		"graphql-tag": "^2.10.3",
 		"next": "9.3.5",
 		"react": "16.13.1",
