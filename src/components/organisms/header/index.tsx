@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useMenus } from "particles/hooks"
-import { Menu, MenuItem } from "src/generated/graphql"
+import { Menu, MenuItem } from "wjhm"
 
 import HeaderComponent from "./header.styles"
 

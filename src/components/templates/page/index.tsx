@@ -1,5 +1,5 @@
 import React from "react"
-import {Page} from "src/generated/graphql"
+import {Page} from "wjhm"
 import Base from "templates/base"
 
 import ComponentParser from "particles/ComponentParser"

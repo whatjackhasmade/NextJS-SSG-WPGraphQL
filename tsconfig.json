@@ -24,7 +24,8 @@
       "css/*": ["src/components/particles/css/*"],
       "helpers": ["src/components/particles/helpers"],
       "hooks/*": ["src/components/particles/hooks/*"],
-      "queries/*": ["src/components/particles/graphql/queries/*"]
+      "queries/*": ["src/components/particles/graphql/queries/*"],
+      "wjhm": ["src/generated/graphql/wjhm/index.tsx"]
     },
     "resolveJsonModule": true,
     "rootDir": "src",

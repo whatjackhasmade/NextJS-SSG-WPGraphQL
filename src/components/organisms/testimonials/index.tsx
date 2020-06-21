@@ -1,8 +1,8 @@
 import React, { useRef } from "react"
 import Slider from "react-slick"
 
-import {AcfTestimonialsBlockFields} from "src/generated/graphql"
-import {AcfTestimonialsBlockFieldsTestimonials} from "src/generated/graphql"
+import {AcfTestimonialsBlockFields} from "wjhm"
+import {AcfTestimonialsBlockFieldsTestimonials} from "wjhm"
 
 import IconAngleRight from "assets/images/icons/solid/angle-right.svg"
 

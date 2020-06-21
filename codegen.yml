@@ -1,7 +1,7 @@
 overwrite: true
 schema: "https://wjhm.noface.app/graphql"
 generates:
-  src/generated/graphql.tsx:
+  src/generated/graphql/wjhm/index.tsx:
     plugins:
       - "typescript"
       - "typescript-operations"
