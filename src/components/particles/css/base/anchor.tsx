@@ -4,7 +4,7 @@ import device from "particles/mediaQueries"
 
 const exportedCSS = css`
   a {
-    color: ${(props) => props.theme.primary};
+    color: var(--primary);
     text-decoration: none;
 
     &:active,

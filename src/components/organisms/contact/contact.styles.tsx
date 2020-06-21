@@ -9,8 +9,8 @@ const ContactComponent = styled.section`
   width: 100vw;
   z-index: 9;
 
-  background-color: ${(props) => props.theme.primary};
-  color: ${(props) => props.theme.white};
+  background-color: var(--primary);
+  color: var(--white);
 
   button {
     @media ${device.MXxs} {

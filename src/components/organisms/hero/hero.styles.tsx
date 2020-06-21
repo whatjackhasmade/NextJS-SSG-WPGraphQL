@@ -12,8 +12,8 @@ const HeroComponent = styled.section`
   z-index: 9;
 
   background: ${(props) =>
-    props.background ? props.background : props.theme.primary};
-  color: ${(props) => props.theme.white};
+    props.background ? props.background : `var(--primary)`};
+  color: var(--white);
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
   @supports (margin-left: -50vw) {
@@ -33,10 +33,10 @@ const HeroComponent = styled.section`
     margin: 16px 0 0;
     padding: 16px 24px;
 
-    background-color: ${(props) => props.theme.white};
+    background-color: var(--white);
     border: none;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    color: ${(props) => props.theme.primary};
+    color: var(--primary);
     cursor: pointer;
     font-weight: 700;
     line-height: 1;

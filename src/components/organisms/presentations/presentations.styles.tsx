@@ -92,7 +92,7 @@ const PresentationsComponent = styled.section`
   .subheading {
     margin: 0 0 8px;
 
-    color: ${(props) => props.theme.primary};
+    color: var(--primary);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.1em;

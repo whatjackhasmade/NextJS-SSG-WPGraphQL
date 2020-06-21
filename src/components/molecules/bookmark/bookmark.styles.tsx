@@ -4,19 +4,19 @@ const StyledLink = styled.a`
   display: flex;
   margin: 32px 0;
 
-  border: 1px solid ${props => props.theme.grey200};
-  color: ${props => props.theme.black};
+  border: 1px solid var(--grey200);
+  color: var(--black);
   text-decoration: none;
   transition: 0.2s border ease;
 
   &:active,
   &:focus,
   &:hover {
-    border: 1px solid ${props => props.theme.grey400};
+    border: 1px solid var(--grey400);
     text-decoration: none;
 
     .link__description {
-      color: ${props => props.theme.black};
+      color: var(--black);
     }
   }
 
@@ -31,7 +31,7 @@ const StyledLink = styled.a`
   .link__description {
     margin-top: 8px;
 
-    color: ${props => props.theme.grey600};
+    color: var(--grey600);
     font-size: 14px;
     transition: 0.2s color ease;
   }

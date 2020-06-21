@@ -7,8 +7,8 @@ const exportedCSS = css`
     overflow-x: hidden;
     scroll-behavior: smooth;
 
-    background: ${(props) => props.theme.white};
-    color: ${(props) => props.theme.black};
+    background-color: var(--white);
+    color: var(--black);
     font-size: 1.6rem;
     line-height: 1.5;
   }

@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import styled from "styled-components"
 
 const DuotoneElement = styled.picture`
-  --highlight: ${props =>
-    props.highlight ? props.highlight : props.theme.primary};
-  --shadow: ${props => (props.shadow ? props.shadow : `#000`)};
+  --highlight: ${(props) =>
+    props.highlight ? props.highlight : `var(--primary)`};
+  --shadow: ${(props) => (props.shadow ? props.shadow : `#000`)};
 
   width: 100%;
   height: 100%;

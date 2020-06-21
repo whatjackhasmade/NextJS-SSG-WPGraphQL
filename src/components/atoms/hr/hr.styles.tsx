@@ -8,7 +8,7 @@ const HRComponent = styled.hr`
 
   background: none;
   border: none;
-  border-top: 1px solid ${(props) => props.theme.grey200};
+  border-top: 1px solid var(--grey200);
 
   @media ${device.sm} {
     margin: 36px auto;

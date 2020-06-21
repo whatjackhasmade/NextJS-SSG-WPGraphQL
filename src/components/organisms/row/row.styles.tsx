@@ -95,8 +95,8 @@ const RowComponent = styled.section`
 
         margin: 24px 0 16px;
 
-        background-color: ${(props) => props.theme.primary};
-        color: ${(props) => props.theme.white};
+        background-color: var(--primary);
+        color: var(--white);
       }
     }
   }

@@ -21,7 +21,7 @@ const HeroMediaComponent = styled.div`
       z-index: 2;
 
       background: ${(props) =>
-        props.background ? props.background : props.theme.primary};
+        props.background ? props.background : `var(--primary)`};
       opacity: ${(props) => (props.overlay ? `0.7` : `0`)};
     }
   }

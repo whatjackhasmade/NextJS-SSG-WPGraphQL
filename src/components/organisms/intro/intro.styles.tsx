@@ -8,7 +8,7 @@ const IntroComponent = styled.section`
   margin: ${(props) =>
     props.marginReduced === true ? `64px 0 32px 0` : `32px 0 16px`};
 
-  color: ${(props) => props.theme.black};
+  color: var(--black);
 
   @media ${device.xs} {
     margin: ${(props) => (props.marginReduced === true ? `64px 0` : `32px 0`)};
@@ -23,7 +23,7 @@ const IntroComponent = styled.section`
     margin: 0 0 24px;
     position: relative;
 
-    color: ${(props) => props.theme.primary};
+    color: var(--primary);
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.1em;
@@ -37,7 +37,8 @@ const IntroComponent = styled.section`
       left: 0;
       height: 100%;
       width: 2px;
-      background: ${(props) => props.theme.primary};
+
+      background-color: var(--primary);
 
       @media ${device.xs} {
         content: "";
