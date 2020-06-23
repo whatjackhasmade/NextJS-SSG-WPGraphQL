@@ -1,5 +1,6 @@
 import React from "react"
 import Slider from "react-slick"
+import { AcfPresentationsBlockFields } from "wjhm"
 import ParseHTML from "particles/ParseHTML"
 
 import {usePresentations} from "particles/hooks"
@@ -9,24 +10,9 @@ import settings from "./settings.json"
 
 import Intro from "organisms/intro"
 
-type PresentationsProps = {
-  content: string
-}
-
 type PresentationProps = {
   date: string
   featuredImage: {
-    imageFile?: {
-      childImageSharp?: {
-        fluid?: {
-          aspectRatio: number
-          base64: string
-          sizes: string
-          src: string
-          srcSet: string
-        }
-      }
-    }
     altText: string
     xs: string
     sm: string
@@ -42,11 +28,12 @@ type PresentationProps = {
   venue: string
 }
 
-const Presentations = ({ content }: PresentationsProps) => {
+const Presentations = (props: AcfPresentationsBlockFields) => {
+  const { content } = props
   const presentations = usePresentations()
-  if(!presentations) return null;
-  const hasPresentations = presentations && presentations.length > 0;
-  if(!hasPresentations) return null;
+  if (!presentations) return null
+  const hasPresentations = presentations && presentations.length > 0
+  if (!hasPresentations) return null
 
   return (
     <PresentationsComponent>

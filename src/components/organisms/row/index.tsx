@@ -1,21 +1,18 @@
 import React from "react"
 import { InView } from "react-intersection-observer"
+import { AcfRowBlockFields } from "wjhm"
 import ParseHTML from "particles/ParseHTML"
 
 import RowComponent from "./row.styles"
 
 import ImageLoader from "molecules/imageloader"
 
-type RowProps = {
-  content: string
-  index: number
-  link: string
-  media: {
-    mediaItemUrl: string
-  }
+type AcfRowFields = AcfRowBlockFields & {
+  index?: number
 }
 
-const Row = ({ content, index, link, media }: RowProps) => {
+const Row = (props: AcfRowFields) => {
+  const { content, index, link, media } = props
   const align = index % 2 === 0 ? `left` : `right`
   const ext = media.mediaItemUrl.substr(media.mediaItemUrl.lastIndexOf(".") + 1)
 

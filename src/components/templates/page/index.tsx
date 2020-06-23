@@ -1,8 +1,9 @@
 import React from "react"
 import {Page} from "wjhm"
-import Base from "templates/base"
 
 import ComponentParser from "particles/ComponentParser"
+
+import Base from "templates/base"
 
 const PageTemplate = (props: Page) => {
   const { blocks } = props

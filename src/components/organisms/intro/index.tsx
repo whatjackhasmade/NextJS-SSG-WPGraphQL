@@ -1,31 +1,30 @@
 import React from "react"
+import { AcfIntroBlockFields } from "wjhm"
 import ParseHTML from "particles/ParseHTML"
 
 import IntroComponent from "./intro.styles"
 
-type IntroProps = {
-  children?: any
-  content?: string
-  heading: string
+type AcfIntroFields = AcfIntroBlockFields & {
+  children?: React.ReactNode
   illustration?: {
     mediaItemUrl: string
   }
   index?: number
   maxWidth?: string
   marginReduced?: boolean
-  subheading: string
 }
 
-const Intro = ({
-  children,
-  content,
-  heading,
-  illustration,
-  index,
-  maxWidth,
-  marginReduced,
-  subheading,
-}: IntroProps) => {
+const Intro = (props: AcfIntroFields) => {
+  const {
+    children,
+    content,
+    heading,
+    illustration,
+    index,
+    maxWidth,
+    marginReduced,
+    subheading,
+  } = props
   const Subheading = index === 0 ? `h1` : `h2`
   const Heading = index === 0 ? `h2` : `h3`
 

@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react"
 import StyledBookmark from "./bookmark.styles"
+import {AcfLinkBlockFields} from "wjhm";
 
 const scraperURL = process.env.OPEN_GRAPH_SCRAPER
-
-type BookmarkProps = {
-  url: string
-}
 
 type BookmarkImageData = {
   ogDescription?: string
@@ -13,7 +10,8 @@ type BookmarkImageData = {
   ogTitle?: string
 }
 
-const Bookmark = ({ url }: BookmarkProps) => {
+const Bookmark = (props: AcfLinkBlockFields) => {
+  const { url } = props
   const fallback = `/images/placeholder.png`
   const [data, setData] = useState<BookmarkImageData>({})
 

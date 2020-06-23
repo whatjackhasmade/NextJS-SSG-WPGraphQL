@@ -3,8 +3,6 @@ import React, { useState } from "react"
 import ContactForm from "./parts/fields"
 import ContactComponent from "./contact.styles"
 
-type ContactProps = {}
-
 const Contact = () => {
   const [bot, setBot] = useState("")
   const [company, setCompany] = useState("")

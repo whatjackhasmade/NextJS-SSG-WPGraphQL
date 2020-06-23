@@ -1,11 +1,8 @@
 import React from "react"
+import { AcfCodeBlockFields } from "wjhm"
 
-type CodeProps = {
-  code: string
-  language: string
-}
-
-const Code = ({ code, language }: CodeProps) => {
+const Code = (props: AcfCodeBlockFields) => {
+  const { code, language } = props;
   return (
     <pre className={`language-${language}`}>
       <code>{code}</code>

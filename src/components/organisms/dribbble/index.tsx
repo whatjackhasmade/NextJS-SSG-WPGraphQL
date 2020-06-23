@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Slider from "react-slick"
 import ParseHTML from "particles/ParseHTML"
 import useAllDribbble from "hooks/useAllDribbble"
+import { AcfDribbbleBlockFields } from "wjhm"
 
 import DribbbleComponent from "./dribbble.styles"
 import settings from "./settings.json"
@@ -9,10 +10,6 @@ import settings from "./settings.json"
 import LogoDribbble from "assets/images/icons/brands/dribbble.svg"
 
 import Intro from "organisms/intro"
-
-type DribbbleProps = {
-  content: string
-}
 
 type ShotProps = {
   id: string
@@ -24,7 +21,7 @@ type ShotProps = {
   title: string
 }
 
-const Dribbble = ({ content }: DribbbleProps) => {
+const Dribbble = ({ content }: AcfDribbbleBlockFields) => {
   const shots = useAllDribbble()
   const hasShots = shots && shots.length > 0
   if (!hasShots) return null

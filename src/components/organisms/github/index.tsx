@@ -1,15 +1,14 @@
 import React from "react"
+import { AcfGithubBlockFields } from "wjhm"
 import ParseHTML from "particles/ParseHTML"
 
 import GithubComponent from "./github.styles"
 
 import Intro from "organisms/intro"
 
-type GithubProps = {
-  content: string
-}
-
-const Github = ({ content }: GithubProps) => (
+const Github = (props: AcfGithubBlockFields) => {
+  const { content } = props;
+  return (
   <GithubComponent>
     <Intro
       heading={`Development Activity`}
@@ -30,5 +29,6 @@ const Github = ({ content }: GithubProps) => (
     <div>{ParseHTML(content)}</div>
   </GithubComponent>
 )
+}
 
 export default Github

@@ -1,33 +1,16 @@
 import React, { FunctionComponent, ReactNode } from "react"
 import slugify from "slugify"
+import {CoreHeadingBlockAttributes} from "wjhm"
 
-type HeadingProps = {
-  attributes?: {
-    align: string
-    anchor: string
-    className: string
-    content: string
-    level: 1 | 2 | 3 | 4 | 5 | 6
-    placeholder: string
-  }
+type HeadingProps = CoreHeadingBlockAttributes & {
   children?: string
-  className?: string
-  content: string
-  isValid?: boolean
-  level: 1 | 2 | 3 | 4 | 5 | 6
-  originalContent?: string
-  style?: string
+  style: 1 | 2 | 3 | 4 | 5 | 6
 }
 
 type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 
-const Heading = ({
-  children,
-  className,
-  content,
-  level,
-  style,
-}: HeadingProps) => {
+const Heading = (props: HeadingProps) => {
+  const { children, className, content, level, style } = props;
   const HeadingComponent = `h${level}` as HeadingTag
 
   let headingClass = ``

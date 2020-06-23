@@ -13,17 +13,20 @@ type ImageLoaderProps = {
   width?: number
 }
 
-const ImageLoader = ({
-  alt,
-  className,
-  height,
-  loadedClassName,
+const ImageLoader = (props: ImageLoaderProps) => {
+    const {
+      alt,
+      className,
+      height,
+      loadedClassName,
+    } = props
+  const {
   loadingClassName,
   offset,
   onClick,
   src,
   width,
-}: ImageLoaderProps) => {
+} = props;
   const [loaded, setLoaded] = useState(false)
 
   //image onLoad handler to update state to loaded

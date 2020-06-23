@@ -1,51 +1,30 @@
 import React, { useEffect } from "react"
 import moment from "moment"
+import Prism from "prismjs"
+import { Post } from "wjhm"
 import { decodeHTML } from "helpers"
 import ParseHTML from "particles/ParseHTML"
-import ComponentParser from "particles/ComponentParser"
-import Prism from "prismjs"
-
-import Link from "atoms/link"
 
 import { Article, ArticleIntro } from "./post.styles"
+
+import ComponentParser from "particles/ComponentParser"
+
+import Link from "atoms/link"
 
 import OverviewList from "molecules/overview-list"
 
 import Related from "organisms/related"
 
-import Base from "Base"
+import Base from "templates/base"
 
-type PostProps = {
-  pageContext: {
-    acf: {
-      learn?: {
-        items: [
-          {
-            id?: string
-            value: string
-          }
-        ]
-        title?: string
-      }
-      relatedPosts?: []
-    }
-    blocks: []
-    content: string
-    date: string
-    title: string
-  }
-}
-
-const PostTemplate = ({
-  pageContext,
-  pageContext: {
+const PostTemplate = (props: Post) => {
+  const {
     acf: { learn, relatedPosts },
     blocks,
     content,
     date,
     title,
-  },
-}: PostProps) => {
+  } = props;
   // useEffect(() => {
   //   // call the highlightAll() function to style our code blocks
   //   Prism.highlightAll()
@@ -54,7 +33,7 @@ const PostTemplate = ({
   const lessons = learn.items
 
   return (
-    <Base context={pageContext}>
+    <Base context={props}>
       <ArticleIntro>
         <nav className="article__meta">
           <Link to="/posts">Insights</Link>
