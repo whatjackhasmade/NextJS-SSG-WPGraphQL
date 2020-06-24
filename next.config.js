@@ -25,9 +25,7 @@ module.exports = {
     config.resolve.alias["queries"] = buildPath(
       "src/components/particles/graphql/queries"
     )
-    config.resolve.alias["wjhm"] = buildPath(
-      "src/generated/graphql/wjhm"
-    )
+    config.resolve.alias["wjhm"] = buildPath("src/generated/graphql/wjhm")
 
     // Support SVG loading https://stackoverflow.com/a/55180310
     config.module.rules.push({

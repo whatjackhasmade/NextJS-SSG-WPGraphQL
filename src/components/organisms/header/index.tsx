@@ -14,9 +14,7 @@ const Header = () => {
   const [menuOpen, toggleMenu] = useState(false)
 
   const allMenus = useMenus()
-  const headerMenu: Menu = allMenus.find(
-    ({ slug }) => slug === "header-menu"
-  )
+  const headerMenu: Menu = allMenus.find(({ slug }) => slug === "header-menu")
   if (!headerMenu) return null
 
   const nodes = headerMenu?.menuItems?.nodes
@@ -24,15 +22,15 @@ const Header = () => {
 
   const itemCount = nodes.length
   const lastItem = nodes[itemCount - 1]
-  if(!lastItem) return null;
+  if (!lastItem) return null
 
-  let className = `header__menu`;
-  if(menuOpen) className += ` header__menu--show`
+  let className = `header__menu`
+  if (menuOpen) className += ` header__menu--show`
 
-  const menuLabel = menuOpen ? `Close` : `Open`;
+  const menuLabel = menuOpen ? `Close` : `Open`
 
-  const handleClick = e => {
-    e.preventDefault();
+  const handleClick = (e) => {
+    e.preventDefault()
     toggleMenu(!menuOpen)
   }
 

@@ -11,7 +11,7 @@ interface PageItem {
   }
 }
 
-interface PageCollection extends Array<PageItem>{}
+interface PageCollection extends Array<PageItem> {}
 
 const Page = (props) => <PageTemplate {...props} />
 

@@ -24,7 +24,7 @@ const PostTemplate = (props: Post) => {
     content,
     date,
     title,
-  } = props;
+  } = props
   // useEffect(() => {
   //   // call the highlightAll() function to style our code blocks
   //   Prism.highlightAll()

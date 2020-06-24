@@ -1,8 +1,8 @@
 import React, { useRef } from "react"
 import Slider from "react-slick"
 
-import {AcfTestimonialsBlockFields} from "wjhm"
-import {AcfTestimonialsBlockFieldsTestimonials} from "wjhm"
+import { AcfTestimonialsBlockFields } from "wjhm"
+import { AcfTestimonialsBlockFieldsTestimonials } from "wjhm"
 
 import IconAngleRight from "assets/images/icons/solid/angle-right.svg"
 
@@ -22,12 +22,12 @@ const settings = {
 }
 
 const Testimonials = (props: AcfTestimonialsBlockFields) => {
-  const {testimonials} = props;
+  const { testimonials } = props
   const sliderImages = useRef(null)
   const sliderTestimonials = useRef(null)
 
-  const hasTestimonials = testimonials && testimonials.length > 0;
-  if (!hasTestimonials) return null;
+  const hasTestimonials = testimonials && testimonials.length > 0
+  if (!hasTestimonials) return null
   const hasMultiple = testimonials.length > 1
 
   const nextTestimonial = (e) => {
@@ -67,14 +67,14 @@ const Testimonials = (props: AcfTestimonialsBlockFields) => {
 }
 
 const TestimonialImage = (props: AcfTestimonialsBlockFieldsTestimonials) => {
-  const { author, media } = props;
+  const { author, media } = props
   if (!author || !media?.mediaItemUrl) return null
   return <img src={media.mediaItemUrl} alt={author} key={author} />
 }
 
 const Testimonial = (props: AcfTestimonialsBlockFieldsTestimonials) => {
   const { author, logo, role, testimonial } = props
-  const hasLogo = logo?.uri;
+  const hasLogo = logo?.uri
 
   return (
     <div className="testimonial" key={`testimonial-${author}`}>
@@ -83,9 +83,7 @@ const Testimonial = (props: AcfTestimonialsBlockFieldsTestimonials) => {
           <h3 className="testimonial__author">{author}</h3>
           <h4 className="testimonial__role">{role}</h4>
         </div>
-        {hasLogo && (
-          <img className="testimonial__logo" src={logo.uri} alt="" />
-        )}
+        {hasLogo && <img className="testimonial__logo" src={logo.uri} alt="" />}
       </header>
       <p className="testimonial__quote">"{testimonial}"</p>
     </div>

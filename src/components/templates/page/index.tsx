@@ -1,5 +1,5 @@
 import React from "react"
-import {Page} from "wjhm"
+import { Page } from "wjhm"
 
 import ComponentParser from "particles/ComponentParser"
 

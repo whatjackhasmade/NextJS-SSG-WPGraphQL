@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import StyledBookmark from "./bookmark.styles"
-import {AcfLinkBlockFields} from "wjhm";
+import { AcfLinkBlockFields } from "wjhm"
 
 const scraperURL = process.env.OPEN_GRAPH_SCRAPER
 

@@ -6,7 +6,7 @@ export function autoParagraph(html) {
 export function decodeHTML(html) {
   if (!html) return null
   html = html.replace("amp;", "")
-  return html.replace(/&#(\d+);/g, function(match, dec) {
+  return html.replace(/&#(\d+);/g, function (match, dec) {
     return String.fromCharCode(dec)
   })
 }
@@ -30,9 +30,7 @@ export function isInternal(url) {
 }
 
 export function randomID() {
-  return Math.random()
-    .toString(36)
-    .substring(7)
+  return Math.random().toString(36).substring(7)
 }
 
 export function removeDimensions(html) {

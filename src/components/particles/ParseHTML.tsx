@@ -26,13 +26,10 @@ const config = {
         return null
       }
 
-      if (href && children)
-        return <Link attribs={href}>{children}</Link>
+      if (href && children) return <Link attribs={href}>{children}</Link>
     }
   },
 }
-
-
 
 const ParseHTML = (html) => {
   const clean = Parser(html, config)

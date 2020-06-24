@@ -1,12 +1,13 @@
 {
-	"name": "WJHM-NextJS",
+	"name": "wjhm-nextjs",
 	"version": "1.0.0",
 	"scripts": {
 		"build": "next build",
 		"codegen": "graphql-codegen --config codegen.yml",
 		"dev": "next dev",
 		"deploy": "next build && next export",
-		"prettier": "prettier --ignore-path .gitignore \"**/*.{css,js,json,jsx,md,mdx,scss,ts,tsx}\"",
+		"format": "yarn prettier",
+		"prettier": "prettier --write .",
 		"start": "next start"
 	},
 	"dependencies": {

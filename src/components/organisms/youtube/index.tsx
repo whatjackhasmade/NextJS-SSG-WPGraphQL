@@ -9,23 +9,22 @@ import ImageLoader from "molecules/imageloader"
 // https://developers.google.com/youtube/player_parameters
 const opts = {
   playerVars: {
-    autoplay: 0
-  }
+    autoplay: 0,
+  },
 }
 
 type YouTubeChannelProps = {}
 
 const YouTubeChannel = ({}: YouTubeChannelProps) => {
   const channelVideos = useYouTubeVideos()
-  if(!channelVideos) return null;
-  const hasVideos = channelVideos && channelVideos.length > 0;
-  if(!hasVideos) return null;
-
+  if (!channelVideos) return null
+  const hasVideos = channelVideos && channelVideos.length > 0
+  if (!hasVideos) return null
 
   // access to player in all event handlers via event.target
   const _onReady = (event) => event.target.pauseVideo()
 
-  const firstVideo = channelVideos[0].node;
+  const firstVideo = channelVideos[0].node
 
   return (
     <YouTubeComponent>
@@ -65,25 +64,20 @@ const YouTubeChannel = ({}: YouTubeChannelProps) => {
             View My YouTube Channel
           </a>
           {firstVideo.snippet && (
-              <div
-                className="youtube__video"
-                title={firstVideo.snippet.title}
-              >
-                <YouTube
-                  videoId={firstVideo.snippet.resourceId.videoId}
-                  onReady={_onReady}
-                />
-              </div>
-            )}
+            <div className="youtube__video" title={firstVideo.snippet.title}>
+              <YouTube
+                videoId={firstVideo.snippet.resourceId.videoId}
+                onReady={_onReady}
+              />
+            </div>
+          )}
         </div>
         <div className="youtube__videos">
           {channelVideos.map((video, index) => {
-            const shouldShow = index > 0 && index < 19;
-            if(!shouldShow) return null;
+            const shouldShow = index > 0 && index < 19
+            if (!shouldShow) return null
             const data = video.node
-            return (
-              <Video key={data.snippet.resourceId.videoId} video={data} />
-            )
+            return <Video key={data.snippet.resourceId.videoId} video={data} />
           })}
         </div>
       </div>
@@ -92,8 +86,8 @@ const YouTubeChannel = ({}: YouTubeChannelProps) => {
 }
 
 const Video = ({ video }) => {
-  const snippet = video.snippet;
-  const {title, resourceId, thumbnails} = snippet;
+  const snippet = video.snippet
+  const { title, resourceId, thumbnails } = snippet
 
   return (
     <div className="youtube__video" title={title}>
@@ -103,10 +97,7 @@ const Video = ({ video }) => {
         target="_blank"
       >
         <div className="youtube__video__thumbnail">
-          <ImageLoader
-            alt={title}
-            src={thumbnails.medium.url}
-          />
+          <ImageLoader alt={title} src={thumbnails.medium.url} />
         </div>
       </a>
     </div>

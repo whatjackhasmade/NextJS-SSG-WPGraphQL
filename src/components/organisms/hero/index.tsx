@@ -29,15 +29,15 @@ const Hero = (props: AcfHeroFields) => {
     overlay = true,
   } = props
 
-   if (!content) {
-     return (
-       <StyledHero align={align} maxWidth={maxWidth}>
-         <div className="hero__wrapper">
-           <div className="hero__contents">{children}</div>
-         </div>
-       </StyledHero>
-     )
-   }
+  if (!content) {
+    return (
+      <StyledHero align={align} maxWidth={maxWidth}>
+        <div className="hero__wrapper">
+          <div className="hero__contents">{children}</div>
+        </div>
+      </StyledHero>
+    )
+  }
 
   return (
     <StyledHero background={background_colour} overlay={overlay}>
@@ -63,22 +63,14 @@ const HeroImage = ({ alt, src }) => (
   </div>
 )
 
-const HeroMedia = ({
-  alt,
-  background,
-  duotone,
-  media,
-  overlay,
-}) => (
+const HeroMedia = ({ alt, background, duotone, media, overlay }) => (
   <StyledHeroMedia background={background} overlay={overlay}>
     {duotone && (
       <Duotone className="hero__media">
         <HeroImage alt={alt} src={media} />
       </Duotone>
     )}
-    {!duotone && (
-      <HeroImage alt={alt} src={media} />
-    )}
+    {!duotone && <HeroImage alt={alt} src={media} />}
   </StyledHeroMedia>
 )
 

@@ -1,4 +1,8 @@
 .cache
+.next
+node_modules
+public
+src/generated
+graphql.schema.json
 package.json
 package-lock.json
-public

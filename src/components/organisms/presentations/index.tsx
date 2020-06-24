@@ -3,7 +3,7 @@ import Slider from "react-slick"
 import { AcfPresentationsBlockFields } from "wjhm"
 import ParseHTML from "particles/ParseHTML"
 
-import {usePresentations} from "particles/hooks"
+import { usePresentations } from "particles/hooks"
 
 import PresentationsComponent from "./presentations.styles"
 import settings from "./settings.json"
@@ -54,11 +54,11 @@ const Presentations = (props: AcfPresentationsBlockFields) => {
 
 const Presentation = ({ featuredImage, title, venue }: PresentationProps) => (
   <div className="presentations__event" key={`${title}-${venue}`}>
-      <img
-        alt={title}
-        className="presentations__event__thumbnail"
-        src={featuredImage.sm}
-      />
+    <img
+      alt={title}
+      className="presentations__event__thumbnail"
+      src={featuredImage.sm}
+    />
     <div className="presentations__event__meta">
       <h5 className="subheading">{venue}</h5>
       <h3>{title}</h3>

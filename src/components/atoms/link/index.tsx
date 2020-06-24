@@ -13,11 +13,10 @@ export const useRelative = (url) => {
   return string
 }
 
-
 const DynamicLink = (props) => {
   const { children, className, href, to } = props
   const goto = href ? href : to ? to : `#`
-  const url = useRelative(goto);
+  const url = useRelative(goto)
 
   if (isInternal(url)) {
     return (
