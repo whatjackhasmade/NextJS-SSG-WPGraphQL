@@ -12,7 +12,7 @@ import Base from "templates/base"
 type Four0FourProps = {}
 
 const Four0Four = ({}: Four0FourProps) => {
-  const allPosts = useAllPosts()
+  const allPosts = []
   const latestPosts = allPosts.filter((post, i) => i < 3)
   const hasPosts = latestPosts && latestPosts.length > 0
 

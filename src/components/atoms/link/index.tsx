@@ -23,9 +23,12 @@ export const useRelative = (url) => {
 }
 
 const DynamicLink = (props) => {
-  const { children, className, href, to } = props
+  const { as, children, className, href, to } = props
   const goto = href ? href : to ? to : `#`
   const url = useRelative(goto)
+
+  const urlIndex = url.lastIndexOf("/")
+  const routeAs = url.substr(urlIndex)
 
   if (isInternal(url)) {
     return (

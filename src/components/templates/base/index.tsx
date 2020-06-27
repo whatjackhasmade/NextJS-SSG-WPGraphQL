@@ -1,5 +1,7 @@
 import React from "react"
+import fetch from "unfetch"
 import { ThemeProvider } from "styled-components"
+import { SWRConfig } from "swr"
 
 import GlobalStyle from "particles/GlobalStyle"
 import SEO from "particles/SEO"
@@ -14,6 +16,8 @@ type BaseProps = {
   context?: any
   cta: boolean
 }
+
+const fetcher = (url) => fetch(url).then((r) => r.json())
 
 const Base = ({ children, context, cta = true }: BaseProps) => (
   <ThemeProvider theme={ThemeDefault}>

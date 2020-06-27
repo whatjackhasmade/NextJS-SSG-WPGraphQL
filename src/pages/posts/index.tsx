@@ -13,11 +13,11 @@ import Base from "templates/base"
 
 import Intro from "organisms/intro"
 
-// function orderByDate(posts) {
-//   return posts.sort((a, b) => new Date(b["date"]) - new Date(a["date"]))
-// }
+const orderByDate = (posts) => {
+  return posts.sort((a, b) => +new Date(b["date"]) - +new Date(a["date"]))
+}
 
-function datesGroupByComponent(dates, token) {
+const datesGroupByComponent = (dates, token) => {
   return dates.reduce((val, obj) => {
     let comp = moment(obj["date"]).format(token)
     ;(val[comp] = val[comp] || []).push(obj)
@@ -25,21 +25,17 @@ function datesGroupByComponent(dates, token) {
   }, {})
 }
 
-type CollectionProps = {
-  date: string
-  key: string
-  posts: []
-}
-
 const Posts = () => {
   const posts = useAllPosts()
-  if (!posts) return null
-  // const postsSorted = orderByDate(posts)
-  // const postsArchive = datesGroupByComponent(postsSorted, "YYYY-MM")
+  const hasPosts = posts && posts.length > 0
+  if (!hasPosts) return null
 
-  // const datesArray = Object.keys(postsArchive).map((key) => {
-  //   if (postsArchive[key] !== undefined) return key
-  // })
+  const postsSorted = orderByDate(posts)
+  const postsArchive = datesGroupByComponent(postsSorted, "YYYY-MM")
+
+  const datesArray = Object.keys(postsArchive).map((key) => {
+    if (postsArchive[key] !== undefined) return key
+  })
 
   return (
     <Base>
@@ -57,22 +53,22 @@ const Posts = () => {
           think.
         </p>
       </Intro>
-      {/* <CollectionNavigation ids={datesArray} /> */}
+      <CollectionNavigation ids={datesArray} />
       <CollectionWrapper>
-        {/* {Object.keys(postsArchive).map((key, index) => (
+        {Object.keys(postsArchive).map((key, index) => (
           <Collection
             date={key}
-            key={`Collection-${index}`}
+            key={`Collection-${key}`}
             posts={postsArchive[key]}
           />
-        ))} */}
+        ))}
       </CollectionWrapper>
     </Base>
   )
 }
 
-const Collection = ({ date, posts }: CollectionProps) => {
-  if (!posts || !posts.length) return null
+const Collection = (props) => {
+  const { date, posts } = props
   return posts.map(({ id, slug, title }, index) => (
     <React.Fragment key={id}>
       {index === 0 ? (
@@ -88,7 +84,7 @@ const Collection = ({ date, posts }: CollectionProps) => {
           )}
         </InView>
       ) : null}
-      <Link href={`/${slug}`}>
+      <Link href={`/posts/${slug}`}>
         <h3 className="h5" key={id}>
           {decodeHTML(title)}
         </h3>

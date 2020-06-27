@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   try {
     // Call an external API endpoint to get posts
     const data = await client.request(POSTS)
-    const nodes: PostCollection = data.posts.edges.map(({ node }) => node)
+    const nodes: PostCollection = data.posts.nodes
 
     const paths = nodes.map((node) => ({
       params: {

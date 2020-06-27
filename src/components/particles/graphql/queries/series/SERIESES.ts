@@ -3,12 +3,10 @@ import { print } from "graphql/language/printer"
 
 export const SERIESES = gql`
   query SERIESES {
-    serieses {
-      edges {
-        node {
-          id
-          slug
-        }
+    serieses(first: 500) {
+      nodes {
+        id
+        slug
       }
     }
   }

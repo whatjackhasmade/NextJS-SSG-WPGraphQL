@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   try {
     // Call an external API endpoint to get serieses
     const data = await client.request(SERIESES)
-    const nodes: SeriesCollection = data.serieses.edges.map(({ node }) => node)
+    const nodes: SeriesCollection = data.serieses.nodes
 
     const paths = nodes.map((node) => ({
       params: {
