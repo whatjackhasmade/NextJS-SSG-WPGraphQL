@@ -1,7 +1,4 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
-export const SERIESES = gql`
+export const SERIESES = /* GraphQL */ `
   query SERIESES {
     serieses(first: 500) {
       nodes {
@@ -12,4 +9,4 @@ export const SERIESES = gql`
   }
 `
 
-export default print(SERIESES)
+export default SERIESES

@@ -1,7 +1,4 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
-export const embedYouTubeBlock = gql`
+export const gqlSnippet = /* GraphQL */ `
  ... on CoreEmbedYoutubeBlock {
 	attributes {
 		url
@@ -9,4 +6,4 @@ export const embedYouTubeBlock = gql`
 }
 `
 
-export default print(embedYouTubeBlock)
+export default gqlSnippet

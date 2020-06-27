@@ -1,7 +1,4 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
-export const coreHeadingBlock = gql`
+export const gqlSnippet = /* GraphQL */ `
 ... on CoreHeadingBlock {
 	attributes {
 		align
@@ -16,4 +13,4 @@ export const coreHeadingBlock = gql`
 }
 `
 
-export default print(coreHeadingBlock)
+export default gqlSnippet

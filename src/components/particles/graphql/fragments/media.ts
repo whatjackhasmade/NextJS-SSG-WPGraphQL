@@ -1,4 +1,4 @@
-export const MediaFragment = `
+export const MediaFragment = /* GraphQL */ `
   altText
   mediaItemUrl
   xs: sourceUrl(size: FEATURED_XS)

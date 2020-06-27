@@ -1,4 +1,4 @@
-export const SEOFragment = `
+export const SEOFragment = /* GraphQL */ `
 	seo {
 		title
 		focuskw

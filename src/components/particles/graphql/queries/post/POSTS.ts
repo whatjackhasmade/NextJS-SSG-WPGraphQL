@@ -1,20 +1,12 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
 import MediaFragment from "fragments/media"
 import SEOFragment from "fragments/seo"
 
-export const POSTS = gql`
+export const POSTS = /* GraphQL */ `
   query POSTS {
     posts(first: 500) {
       nodes {
         id
         slug
-        blocks {
-          isValid
-          name
-          originalContent
-        }
         categories {
           nodes {
             name
@@ -58,4 +50,4 @@ export const POSTS = gql`
   }
 `
 
-export default print(POSTS)
+export default POSTS

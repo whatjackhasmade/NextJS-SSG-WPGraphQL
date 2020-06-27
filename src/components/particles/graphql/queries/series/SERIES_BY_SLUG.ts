@@ -1,10 +1,7 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
 import MediaFragment from "fragments/media"
 import SEOFragment from "fragments/seo"
 
-export const SERIES_BY_SLUG = gql`
+export const SERIES_BY_SLUG = /* GraphQL */ `
 	query SERIES_BY_SLUG($slug: [String]) {
 		serieses( where: {slug: $slug}) {
 			nodes {
@@ -34,4 +31,4 @@ export const SERIES_BY_SLUG = gql`
   }
 `
 
-export default print(SERIES_BY_SLUG)
+export default SERIES_BY_SLUG

@@ -1,7 +1,4 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
-export const PAGES = gql`
+export const PAGES = /* GraphQL */ `
   query PAGES {
     pages {
       edges {
@@ -14,4 +11,4 @@ export const PAGES = gql`
   }
 `
 
-export default print(PAGES)
+export default PAGES

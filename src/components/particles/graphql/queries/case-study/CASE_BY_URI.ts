@@ -1,10 +1,7 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
 import MediaFragment from "fragments/media"
 import SEOFragment from "fragments/seo"
 
-export const CASE_BY_URI = gql`
+export const CASE_BY_URI = /* GraphQL */ `
 	query CASE_BY_URI($uri: String!) {
   	caseStudyBy(uri: $uri) {
 			id
@@ -74,4 +71,4 @@ export const CASE_BY_URI = gql`
 	}
 `
 
-export default print(CASE_BY_URI)
+export default CASE_BY_URI

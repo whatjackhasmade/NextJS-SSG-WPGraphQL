@@ -1,7 +1,4 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
-export const embedTwitterBlock = gql`
+export const gqlSnippet = /* GraphQL */ `
 ... on CoreEmbedTwitterBlock {
 	attributes {
 		url
@@ -15,4 +12,4 @@ export const embedTwitterBlock = gql`
 }
 `
 
-export default print(embedTwitterBlock)
+export default gqlSnippet

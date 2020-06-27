@@ -1,6 +1,4 @@
-import gql from "graphql-tag"
-
-export const MENUS = gql`
+export const MENUS = /* GraphQL */ `
   query MENUS {
     menus {
       nodes {

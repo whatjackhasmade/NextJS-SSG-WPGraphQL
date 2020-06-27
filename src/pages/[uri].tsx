@@ -1,7 +1,6 @@
 import { GetStaticProps } from "next"
 import client from "particles/apollo/client"
 
-import ALL_BLOCKS from "components/particles/graphql/fragments/blocks/all"
 import PAGE_BY_URI from "queries/page/PAGE_BY_URI"
 import PAGES from "queries/page/PAGES"
 

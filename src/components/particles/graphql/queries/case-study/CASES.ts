@@ -1,7 +1,4 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
-export const CASES = gql`
+export const CASES = /* GraphQL */ `
   query CASES {
     caseStudies(first: 500) {
       nodes {
@@ -12,4 +9,4 @@ export const CASES = gql`
   }
 `
 
-export default print(CASES)
+export default CASES

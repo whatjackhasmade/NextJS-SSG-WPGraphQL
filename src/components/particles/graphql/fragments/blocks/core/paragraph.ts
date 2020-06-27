@@ -1,7 +1,4 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
-export const coreParagraphBlock = gql`
+export const gqlSnippet = /* GraphQL */ `
 ... on CoreParagraphBlock {
 	attributes {
 		... on CoreParagraphBlockAttributesV3 {
@@ -25,4 +22,4 @@ export const coreParagraphBlock = gql`
 }
 `
 
-export default print(coreParagraphBlock)
+export default gqlSnippet

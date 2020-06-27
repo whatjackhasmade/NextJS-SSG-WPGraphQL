@@ -15,12 +15,32 @@ import testimonials from "./acf/testimonials"
 import youtube from "./acf/youtube"
 import youtubeChannel from "./acf/youtubeChannel"
 
-export default {
+export const graphqlBlocksQuery = /* GraphQL */ `
+  blocks {
+    ${coreHeading}
+    ${embedTwitter}
+    ${embedYouTube}
+    ${code}
+    ${dribbble}
+    ${github}
+    ${hero}
+    ${intro}
+    ${link}
+    ${presentations}
+    ${row}
+    ${testimonials}
+    ${youtube}
+    ${youtubeChannel}
+  }
+`
+
+export default graphqlBlocksQuery
+
+export {
   /* Core Blocks */
   coreHeading,
   embedTwitter,
   embedYouTube,
-
   /* ACF Blocks */
   code,
   dribbble,

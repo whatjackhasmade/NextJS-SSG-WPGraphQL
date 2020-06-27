@@ -1,10 +1,7 @@
-import gql from "graphql-tag"
-import { print } from "graphql/language/printer"
-
-export const youtubechannelBlock = gql`
+export const gqlSnippet = /* GraphQL */ `
 ... on AcfYoutubechannelBlock {
     name
 }
 `
 
-export default print(youtubechannelBlock)
+export default gqlSnippet
