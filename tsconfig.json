@@ -23,7 +23,8 @@
       "particles/*": ["src/components/particles/*"],
       "css/*": ["src/components/particles/css/*"],
       "helpers": ["src/components/particles/helpers"],
-      "hooks/*": ["src/components/particles/hooks/*"],
+      "hooks": ["src/components/particles/hooks"],
+      "fragments/*": ["src/components/particles/graphql/fragments/*"],
       "queries/*": ["src/components/particles/graphql/queries/*"],
       "wjhm": ["src/generated/graphql/wjhm/index.tsx"]
     },
@@ -31,7 +32,8 @@
     "rootDir": "src",
     "skipLibCheck": true,
     "strict": false,
-    "target": "es5"
+    "target": "es5",
+    "types": ["node", "react", "react-youtube"]
   },
   "exclude": ["node_modules"],
   "include": ["src", "index.d.ts"]

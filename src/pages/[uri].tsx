@@ -1,63 +1,67 @@
+import { GetStaticProps } from "next"
 import client from "particles/apollo/client"
 
+import ALL_BLOCKS from "components/particles/graphql/fragments/blocks/all"
 import PAGE_BY_URI from "queries/page/PAGE_BY_URI"
 import PAGES from "queries/page/PAGES"
 
 import PageTemplate from "templates/page"
 
 interface PageItem {
-  data: {
-    pageBy: any
-  }
+  isFrontPage: boolean
+  uri: string
 }
 
 interface PageCollection extends Array<PageItem> {}
 
-const Page = (props) => <PageTemplate {...props} />
-
 // This function gets called at build time
 export async function getStaticPaths() {
-  // Call an external API endpoint to get pages
-  const nodes: PageCollection = await new Promise((resolve, reject) => {
-    return client
-      .query({
-        query: PAGES,
-      })
-      .then(({ data }) => resolve(data.pages.edges.map(({ node }) => node)))
-      .catch((error) => reject(error.message))
-  })
+  let staticObject = { paths: [{ params: { uri: "" } }], fallback: false }
 
-  const paths = nodes.map((node) => ({
-    params: {
-      ...node,
-    },
-  }))
+  try {
+    // Call an external API endpoint to get pages
+    const data = await client.request(PAGES)
+    const nodes: PageCollection = data.pages.edges.map(({ node }) => node)
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
+    const paths = nodes.map((node) => {
+      const { isFrontPage } = node
+      let { uri } = node
+
+      if (isFrontPage) uri = ``
+
+      return {
+        params: { uri },
+      }
+    })
+
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    staticObject = { paths, fallback: false }
+  } catch (error) {
+    console.error(error.message)
+  }
+
+  return staticObject
 }
 
 // This also gets called at build time
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async (context) => {
+  let postProps = { props: null }
+  const { params } = context
   const { uri } = params
 
-  // params contains the page `id`.
-  // If the route is like /pages/1, then params.id is 1
-  const page: PageItem = await new Promise((resolve, reject) => {
-    return client
-      .query({
-        query: PAGE_BY_URI,
-        variables: { uri },
-      })
-      .then((data) => resolve(data))
-      .catch((error) => reject(error.message))
-  })
+  try {
+    // Call an external API endpoint to get pages
+    const data = await client.request(PAGE_BY_URI, { uri })
+    const pageData = data.pageBy
 
-  const pageData = page.data.pageBy
+    // Pass page data to the page via props
+    postProps = { props: { ...pageData } }
+  } catch (error) {
+    console.error(error.message)
+  }
 
-  // Pass page data to the page via props
-  return { props: { ...pageData } }
+  return postProps
 }
 
-export default Page
+export default PageTemplate

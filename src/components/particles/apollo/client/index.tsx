@@ -1,8 +1,5 @@
-import "cross-fetch/polyfill"
-import ApolloClient from "apollo-boost"
+import { GraphQLClient } from "graphql-request"
 
-const client = new ApolloClient({
-  uri: "https://wjhm.noface.app/graphql",
-})
+const client = new GraphQLClient(process.env.GRAPHQL_API)
 
 export default client

@@ -1,20 +1,10 @@
 import React from "react"
+import { Post_Postfields_Learn } from "wjhm"
+
 import StyledOverviewList from "./overview.list.styles"
 
-type OverviewListProps = {
-  items: [
-    {
-      id?: string
-      value: string
-    }
-  ]
-  title?: string
-}
-
-const OverviewList = ({
-  items,
-  title = "What you will learn",
-}: OverviewListProps) => {
+const OverviewList = (props: Post_Postfields_Learn) => {
+  const { items, title = "What you will learn" } = props
   if (!items) return null
   const validItems = items.filter(({ value }) => {
     if (value) return true

@@ -32,6 +32,7 @@ const config = {
 }
 
 const ParseHTML = (html) => {
+  if (!html) return null
   const clean = Parser(html, config)
   return clean
 }

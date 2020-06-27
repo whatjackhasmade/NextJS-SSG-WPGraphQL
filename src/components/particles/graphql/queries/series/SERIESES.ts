@@ -1,17 +1,17 @@
 import gql from "graphql-tag"
 import { print } from "graphql/language/printer"
 
-export const PAGES = gql`
-  query PAGES {
-    pages {
+export const SERIESES = gql`
+  query SERIESES {
+    serieses {
       edges {
         node {
-          isFrontPage
-          uri
+          id
+          slug
         }
       }
     }
   }
 `
 
-export default print(PAGES)
+export default print(SERIESES)

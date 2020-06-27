@@ -5,15 +5,17 @@ import { decodeHTML } from "helpers"
 
 import { CollectionMenu, CollectionWrapper } from "./posts.styles"
 
-import useAllPosts from "hooks/useAllPosts"
+import { useAllPosts } from "hooks"
+
+import Link from "atoms/link"
 
 import Base from "templates/base"
 
 import Intro from "organisms/intro"
 
-function orderByDate(posts) {
-  return posts.sort((a, b) => new Date(b["date"]) - new Date(a["date"]))
-}
+// function orderByDate(posts) {
+//   return posts.sort((a, b) => new Date(b["date"]) - new Date(a["date"]))
+// }
 
 function datesGroupByComponent(dates, token) {
   return dates.reduce((val, obj) => {
@@ -32,12 +34,12 @@ type CollectionProps = {
 const Posts = () => {
   const posts = useAllPosts()
   if (!posts) return null
-  const postsSorted = orderByDate(posts)
-  const postsArchive = datesGroupByComponent(postsSorted, "YYYY-MM")
+  // const postsSorted = orderByDate(posts)
+  // const postsArchive = datesGroupByComponent(postsSorted, "YYYY-MM")
 
-  const datesArray = Object.keys(postsArchive).map((key) => {
-    if (postsArchive[key] !== undefined) return key
-  })
+  // const datesArray = Object.keys(postsArchive).map((key) => {
+  //   if (postsArchive[key] !== undefined) return key
+  // })
 
   return (
     <Base>
@@ -55,15 +57,15 @@ const Posts = () => {
           think.
         </p>
       </Intro>
-      <CollectionNavigation ids={datesArray} />
+      {/* <CollectionNavigation ids={datesArray} /> */}
       <CollectionWrapper>
-        {Object.keys(postsArchive).map((key, index) => (
+        {/* {Object.keys(postsArchive).map((key, index) => (
           <Collection
             date={key}
             key={`Collection-${index}`}
             posts={postsArchive[key]}
           />
-        ))}
+        ))} */}
       </CollectionWrapper>
     </Base>
   )
@@ -86,7 +88,7 @@ const Collection = ({ date, posts }: CollectionProps) => {
           )}
         </InView>
       ) : null}
-      <Link to={`/${slug}`}>
+      <Link href={`/${slug}`}>
         <h3 className="h5" key={id}>
           {decodeHTML(title)}
         </h3>

@@ -14,13 +14,9 @@ import HR from "atoms/hr"
 import Base from "templates/base"
 
 const SeriesTemplate = (props: Series) => {
-  const {
-    description,
-    name,
-    posts,
-    SeriesFields,
-    SeriesFields: { seriesImage, youtubePlaylist },
-  } = props
+  const { description, name, posts, SeriesFields } = props
+  const { seriesImage, youtubePlaylist } = SeriesFields
+  const hasItems = posts.nodes && posts.nodes.length > 0
 
   return (
     <Base context={props}>
@@ -52,15 +48,15 @@ const SeriesTemplate = (props: Series) => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <img alt={seriesImage.altText} src={seriesImage.xl} />
+              <img alt={seriesImage.altText} src={seriesImage.mediaItemUrl} />
             </a>
           </SeriesIntro>
         )}
         <HR />
-        {posts.nodes.length > 0 && (
+        {hasItems && (
           <section className="series__grid">
             {posts.nodes.reverse().map((post) => (
-              <SeriesPost {...post} />
+              <SeriesPost key={post.id} {...post} />
             ))}
           </section>
         )}

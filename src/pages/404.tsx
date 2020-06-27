@@ -1,6 +1,6 @@
 import React from "react"
 import { Container, Row, Col } from "react-grid-system"
-import { useAllPosts } from "hooks/useAllPosts"
+import { useAllPosts } from "hooks"
 
 import Link from "atoms/link"
 
@@ -14,6 +14,7 @@ type Four0FourProps = {}
 const Four0Four = ({}: Four0FourProps) => {
   const allPosts = useAllPosts()
   const latestPosts = allPosts.filter((post, i) => i < 3)
+  const hasPosts = latestPosts && latestPosts.length > 0
 
   return (
     <Base>
@@ -41,7 +42,7 @@ const Four0Four = ({}: Four0FourProps) => {
           </Row>
         </Container>
       </Hero>
-      {latestPosts && latestPosts.length > 0 && (
+      {hasPosts && (
         <Related data={latestPosts} title="Find something that... works!" />
       )}
     </Base>

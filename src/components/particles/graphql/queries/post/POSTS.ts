@@ -1,4 +1,5 @@
 import gql from "graphql-tag"
+import { print } from "graphql/language/printer"
 
 export const POSTS = gql`
   query POSTS {
@@ -13,4 +14,4 @@ export const POSTS = gql`
   }
 `
 
-export default POSTS
+export default print(POSTS)

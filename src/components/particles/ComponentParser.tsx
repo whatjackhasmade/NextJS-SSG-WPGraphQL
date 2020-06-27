@@ -50,6 +50,7 @@ const ComponentParser = (props) => {
   let { content } = props
 
   if (!content) return null
+
   const filteredComponents = content.filter(
     (component) =>
       !component || !isEmptyObject(component) || component.name !== null
@@ -68,15 +69,13 @@ const ComponentParser = (props) => {
           index={index}
           key={`component-${randomID()}`}
           {...component}
-          {...component.data}
           {...component.attributes}
+          {...component.data}
         />
       )
     })
 
-    if (pageComponents) {
-      return pageComponents
-    }
+    if (pageComponents) return pageComponents
   }
   return null
 }

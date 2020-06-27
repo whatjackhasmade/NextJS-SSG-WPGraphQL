@@ -1,25 +1,25 @@
 import { GetStaticProps } from "next"
 import client from "particles/apollo/client"
-import { Post } from "wjhm"
+import { Series } from "wjhm"
 
-import POST_BY_SLUG from "queries/post/POST_BY_SLUG"
-import POSTS from "queries/post/POSTS"
+import SERIES_BY_SLUG from "queries/series/SERIES_BY_SLUG"
+import SERIESES from "queries/series/SERIESES"
 
-import PostTemplate from "templates/post"
+import SeriesTemplate from "templates/series"
 
-interface PostItem {
+interface SeriesItem {
   id: string
   slug: string
 }
 
-interface PostCollection extends Array<PostItem> {}
+interface SeriesCollection extends Array<SeriesItem> {}
 
 // This function gets called at build time
 export async function getStaticPaths() {
   try {
-    // Call an external API endpoint to get posts
-    const data = await client.request(POSTS)
-    const nodes: PostCollection = data.posts.edges.map(({ node }) => node)
+    // Call an external API endpoint to get serieses
+    const data = await client.request(SERIESES)
+    const nodes: SeriesCollection = data.serieses.edges.map(({ node }) => node)
 
     const paths = nodes.map((node) => ({
       params: {
@@ -43,15 +43,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   try {
     // Call an external API endpoint to get pages
-    const data = await client.request(POST_BY_SLUG, { slug })
-    const postBy = data.postBy
+    const data = await client.request(SERIES_BY_SLUG, { slug })
+    const [series] = data.serieses.nodes
 
     // Pass page data to the page via props
-    return { props: { ...postBy } }
+    return { props: { ...series } }
   } catch (error) {
     console.error(error.message)
     return { props: null }
   }
 }
 
-export default PostTemplate
+export default SeriesTemplate

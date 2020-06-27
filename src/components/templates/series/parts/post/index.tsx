@@ -11,7 +11,7 @@ const SeriesPost = (props: Post) => {
     <Link className="post" to={`/${slug}`}>
       {featuredImage && (
         <div className="post__image">
-          <img alt={featuredImage.altText} src={featuredImage.md} />
+          <img alt={featuredImage.altText} src={featuredImage.mediaItemUrl} />
         </div>
       )}
       {title && <h2 className="h4">{he.decode(title)}</h2>}

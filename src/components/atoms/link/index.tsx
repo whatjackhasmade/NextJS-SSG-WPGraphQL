@@ -4,12 +4,21 @@ import { isInternal } from "helpers"
 
 export const useRelative = (url) => {
   if (!url) return undefined
+  if (url.startsWith(`/`)) return url
 
-  const GRAPHQL_API = process.env.GRAPHQL_API
   let string = url
 
-  if (url.startsWith(`/`)) return url
-  string = string.replace(GRAPHQL_API, "")
+  const GRAPHQL_API = process.env.GRAPHQL_API
+  const API = GRAPHQL_API.split("/")
+  let API_ROOT = ``
+  for (let i = 0; i < API.length - 1; i++) {
+    if (i > 0) API_ROOT += "/"
+    API_ROOT += API[i]
+  }
+
+  string = string.replace(API_ROOT, "")
+  string = string.replace(/\/$/, "")
+
   return string
 }
 

@@ -1,38 +1,22 @@
 import React from "react"
 import { InView } from "react-intersection-observer"
-import { isFluid } from "helpers"
+import { MediaItem } from "wjhm"
 
 import { GalleryContainer } from "../case.styles"
 
 import ImageLoader from "molecules/imageloader"
 
 type CaseGalleryProps = {
-  images: [
-    {
-      altText: string
-      imageFile?: {
-        childImageSharp?: {
-          fluid?: {
-            aspectRatio: number
-            base64: string
-            sizes: string
-            src: string
-            srcSet: string
-          }
-        }
-      }
-      md: string
-      mediaItemUrl: string
-    }
-  ]
-  small: boolean
+  images?: [MediaItem]
+  small?: boolean
 }
 
-const CaseGallery = ({ images, small }: CaseGalleryProps) => {
+const CaseGallery = (props) => {
+  const { images, small }: CaseGalleryProps = props
   if (!images[0]) return null
 
   let classList = `gallery`
-  small ? (classList = `gallery gallery--small`) : ` gallery`
+  if (small) classList += ` gallery--small`
 
   return (
     <InView threshold={0} triggerOnce={true}>
@@ -41,27 +25,15 @@ const CaseGallery = ({ images, small }: CaseGalleryProps) => {
           className={inView ? `${classList} gallery--show` : `${classList}`}
           ref={ref}
         >
-          {images.map((image) => (
+          {images.map((image: MediaItem) => (
             <div className="gallery__image__wrapper">
-              {isFluid(image) ? (
-                <Img
+              <div className="gallery__image">
+                <ImageLoader
                   alt={image.altText}
-                  fluid={image.imageFile.childImageSharp.fluid}
-                  imgStyle={{
-                    objectFit: "cover",
-                  }}
                   key={image.mediaItemUrl}
-                  objectFit="cover"
+                  src={image.mediaItemUrl}
                 />
-              ) : (
-                <div className="gallery__image">
-                  <ImageLoader
-                    alt={image.altText}
-                    key={image.mediaItemUrl}
-                    src={image.md}
-                  />
-                </div>
-              )}
+              </div>
             </div>
           ))}
         </GalleryContainer>

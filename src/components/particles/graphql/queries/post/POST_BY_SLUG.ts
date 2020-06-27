@@ -1,4 +1,5 @@
 import gql from "graphql-tag"
+import { print } from "graphql/language/printer"
 
 export const POST_BY_SLUG = gql`
   query POST_BY_SLUG($slug: String!) {
@@ -9,4 +10,4 @@ export const POST_BY_SLUG = gql`
   }
 `
 
-export default POST_BY_SLUG
+export default print(POST_BY_SLUG)

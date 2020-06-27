@@ -1,6 +1,6 @@
 import React from "react"
 import { InView } from "react-intersection-observer"
-import { decodeHTML, isFluid } from "helpers"
+import { decodeHTML } from "helpers"
 
 import { RelatedItem, RelatedWrapper } from "./related.styles"
 

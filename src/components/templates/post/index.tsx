@@ -18,19 +18,20 @@ import Related from "organisms/related"
 import Base from "templates/base"
 
 const PostTemplate = (props: Post) => {
-  const {
-    acf: { learn, relatedPosts },
-    blocks,
-    content,
-    date,
-    title,
-  } = props
+  const { blocks, content, date, title } = props
+  const { PostFields } = props
+  const { learn, relatedPosts } = PostFields
+
   // useEffect(() => {
   //   // call the highlightAll() function to style our code blocks
   //   Prism.highlightAll()
   // })
 
   const lessons = learn.items
+  const hasLessons = lessons && lessons.length > 0
+  const overviewTitle = learn.title ? learn.title : "What you will learn"
+  const hasBlocks = blocks && blocks.length > 0
+  const hasRelated = relatedPosts && relatedPosts.length > 0
 
   return (
     <Base context={props}>
@@ -43,17 +44,13 @@ const PostTemplate = (props: Post) => {
         </nav>
         <h1>{decodeHTML(title)}</h1>
       </ArticleIntro>
-      {blocks.length > 0 ? (
+      {hasBlocks && (
         <Article>
-          {lessons && lessons.length && (
-            <OverviewList
-              items={lessons}
-              title={learn.title ? learn.title : "What you will learn"}
-            />
-          )}
+          {hasLessons && <OverviewList items={lessons} title={overviewTitle} />}
           <ComponentParser content={blocks} />
         </Article>
-      ) : (
+      )}
+      {!hasBlocks && (
         <Article>
           {lessons && lessons.length && (
             <OverviewList
@@ -64,9 +61,7 @@ const PostTemplate = (props: Post) => {
           {ParseHTML(content)}
         </Article>
       )}
-      {relatedPosts && relatedPosts.length > 0 && (
-        <Related data={relatedPosts} />
-      )}
+      {hasRelated && <Related data={relatedPosts} />}
     </Base>
   )
 }

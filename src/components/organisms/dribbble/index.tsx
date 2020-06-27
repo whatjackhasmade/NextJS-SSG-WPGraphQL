@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Slider from "react-slick"
 import ParseHTML from "particles/ParseHTML"
-import useAllDribbble from "hooks/useAllDribbble"
+import { useAllDribbble } from "hooks"
 import { AcfDribbbleBlockFields } from "wjhm"
 
 import DribbbleComponent from "./dribbble.styles"

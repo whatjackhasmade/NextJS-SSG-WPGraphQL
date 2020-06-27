@@ -36,6 +36,9 @@ const Inspiration = () => {
   const [currentTag, setTag] = useState(null)
 
   const allInspiration = useInspiration()
+  const hasInspiration = allInspiration && allInspiration.length > 0
+  if (!hasInspiration) return null
+
   const inspiration = allInspiration.map((item) => {
     return {
       ...item,
@@ -76,21 +79,22 @@ const Inspiration = () => {
 }
 
 const TagButton = ({ currentTag, setTag, tag }) => {
-  const onClick = (e) => {
-    e.preventDefault()
-    updateTag(tag)
-  }
+  const key = `${tag}-${randomID()}`
 
   const updateTag = (tag) => {
     tag === currentTag ? setTag(null) : setTag(tag)
   }
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    updateTag(tag)
+  }
+
+  let className = `focused`
+  if (currentTag && currentTag === tag) className = `focused`
+
   return (
-    <button
-      key={`${tag}-${randomID()}`}
-      className={currentTag && currentTag === tag ? `focused` : `focused`}
-      onClick={onClick}
-    >
+    <button key={key} className={className} onClick={handleClick}>
       {tag}
     </button>
   )
