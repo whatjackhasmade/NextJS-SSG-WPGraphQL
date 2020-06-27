@@ -26,18 +26,17 @@ const breakpoints = {
 }
 
 const CaseTemplate = (props) => {
-  const { pageContext } = props
-  const { CaseStudyFields } = pageContext
+  const { CaseStudyFields } = props
   const {
     blocks,
-    devices,
     devicePreviews,
     gallery,
     intro,
     related,
-    siteUrl,
     testimonials,
   }: CaseStudy_Casestudyfields = CaseStudyFields
+
+  const hasRelated = related && related.length > 0
 
   const mapTestimonials = testimonials.map(({ testimonial }) => {
     return { ...testimonial }
@@ -73,70 +72,14 @@ const CaseTemplate = (props) => {
 
   return (
     <ReactBreakpoints breakpoints={breakpoints}>
-      <Base context={pageContext}>
+      <Base context={props}>
         <Intro
           content={intro.description}
           heading={intro.title}
           subheading={intro.subtitle}
           maxWidth={`906px`}
         />
-        {devicePreviews && (
-          <Media>
-            {({ breakpoints, currentBreakpoint }) =>
-              breakpoints[currentBreakpoint] > breakpoints.lg ? (
-                <InView threshold={0} triggerOnce={true}>
-                  {({ inView, ref }) => (
-                    <Devices
-                      className={inView ? `devices devices--show` : `devices`}
-                      ref={ref}
-                    >
-                      <a
-                        href={siteUrl}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <div className="device-wrapper macbook">
-                          <div
-                            className="device"
-                            data-color="white"
-                            data-device="Macbook2015"
-                            data-orientation="portrait"
-                          >
-                            <div className="screen">
-                              <CaseYouTube url={devices.desktop} />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="device-wrapper iphone">
-                          <div
-                            className="device"
-                            data-device="iPhone7"
-                            data-orientation="portrait"
-                            data-color="white"
-                          >
-                            <div className="screen">
-                              <CaseYouTube url={devices.mobile} />
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </Devices>
-                  )}
-                </InView>
-              ) : (
-                <a
-                  href={siteUrl}
-                  className="button"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  View The {intro.subtitle} Website
-                </a>
-              )
-            }
-          </Media>
-        )}
-
+        {devicePreviews && <CaseMedia {...CaseStudyFields} />}
         {blocks && (
           <>
             {blocks.length > 0 && <CaseRow data={blocks[0].fields} />}
@@ -157,11 +100,68 @@ const CaseTemplate = (props) => {
           </>
         )}
         {/* {testimonials[0] && <Testimonials testimonials={mapTestimonials} />} */}
-        {related[0] && (
+        {hasRelated && (
           <Related data={related} title="Continue Viewing My Case Studies" />
         )}
       </Base>
     </ReactBreakpoints>
+  )
+}
+
+const CaseMedia = (props) => {
+  const { devices, intro, siteUrl }: CaseStudy_Casestudyfields = props
+
+  return (
+    <Media>
+      {({ breakpoints, currentBreakpoint }) =>
+        breakpoints[currentBreakpoint] > breakpoints.lg ? (
+          <InView threshold={0} triggerOnce={true}>
+            {({ inView, ref }) => (
+              <Devices
+                className={inView ? `devices devices--show` : `devices`}
+                ref={ref}
+              >
+                <a href={siteUrl} rel="noopener noreferrer" target="_blank">
+                  <div className="device-wrapper macbook">
+                    <div
+                      className="device"
+                      data-color="white"
+                      data-device="Macbook2015"
+                      data-orientation="portrait"
+                    >
+                      <div className="screen">
+                        <CaseYouTube url={devices.desktop} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="device-wrapper iphone">
+                    <div
+                      className="device"
+                      data-device="iPhone7"
+                      data-orientation="portrait"
+                      data-color="white"
+                    >
+                      <div className="screen">
+                        <CaseYouTube url={devices.mobile} />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </Devices>
+            )}
+          </InView>
+        ) : (
+          <a
+            href={siteUrl}
+            className="button"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            View The {intro.subtitle} Website
+          </a>
+        )
+      }
+    </Media>
   )
 }
 
