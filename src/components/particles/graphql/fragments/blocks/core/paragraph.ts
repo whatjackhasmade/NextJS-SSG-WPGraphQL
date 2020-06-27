@@ -17,7 +17,6 @@ export const gqlSnippet = /* GraphQL */ `
 			width
 		}
 	}
-	isValid
 	originalContent
 }
 `

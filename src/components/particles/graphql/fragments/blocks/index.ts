@@ -1,4 +1,5 @@
 import coreHeading from "./core/heading"
+import coreParagraph from "./core/paragraph"
 
 import embedTwitter from "./core/embedTwitter"
 import embedYouTube from "./core/embedYouTube"
@@ -17,7 +18,10 @@ import youtubeChannel from "./acf/youtubeChannel"
 
 export const graphqlBlocksQuery = /* GraphQL */ `
   blocks {
+    name
+    isValid
     ${coreHeading}
+    ${coreParagraph}
     ${embedTwitter}
     ${embedYouTube}
     ${code}
@@ -34,11 +38,10 @@ export const graphqlBlocksQuery = /* GraphQL */ `
   }
 `
 
-export default graphqlBlocksQuery
-
 export {
   /* Core Blocks */
   coreHeading,
+  coreParagraph,
   embedTwitter,
   embedYouTube,
   /* ACF Blocks */
@@ -54,3 +57,5 @@ export {
   youtube,
   youtubeChannel,
 }
+
+export default graphqlBlocksQuery

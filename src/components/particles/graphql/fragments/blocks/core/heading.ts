@@ -8,7 +8,6 @@ export const gqlSnippet = /* GraphQL */ `
 		level
 		placeholder
 	}
-	isValid
 	originalContent
 }
 `

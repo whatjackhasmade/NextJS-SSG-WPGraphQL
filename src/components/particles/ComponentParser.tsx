@@ -56,6 +56,8 @@ const ComponentParser = (props) => {
   const hasComponents = validComponents && validComponents.length > 0
   if (!hasComponents) return null
 
+  console.log(validComponents)
+
   const pageComponents = validComponents.map((component, index) => {
     const { name, originalContent } = component
     const Component = components[name]
