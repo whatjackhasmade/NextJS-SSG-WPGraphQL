@@ -18,7 +18,7 @@ export const RelatedWrapper = styled.section`
   }
 `
 
-export const RelatedItem = styled.div`
+export const StyledRelatedItem = styled.div`
   display: block;
 
   + * {

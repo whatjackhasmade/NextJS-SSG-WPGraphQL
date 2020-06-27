@@ -5,7 +5,9 @@ import { decodeHTML } from "helpers"
 
 import { CollectionMenu, CollectionWrapper } from "./posts.styles"
 
-import { useAllPosts } from "hooks"
+import client from "particles/apollo/client"
+
+import POSTS from "queries/post/POSTS"
 
 import Link from "atoms/link"
 
@@ -13,29 +15,10 @@ import Base from "templates/base"
 
 import Intro from "organisms/intro"
 
-const orderByDate = (posts) => {
-  return posts.sort((a, b) => +new Date(b["date"]) - +new Date(a["date"]))
-}
-
-const datesGroupByComponent = (dates, token) => {
-  return dates.reduce((val, obj) => {
-    let comp = moment(obj["date"]).format(token)
-    ;(val[comp] = val[comp] || []).push(obj)
-    return val
-  }, {})
-}
-
-const Posts = () => {
-  const posts = useAllPosts()
+const Posts = (props) => {
+  const { posts } = props
   const hasPosts = posts && posts.length > 0
   if (!hasPosts) return null
-
-  const postsSorted = orderByDate(posts)
-  const postsArchive = datesGroupByComponent(postsSorted, "YYYY-MM")
-
-  const datesArray = Object.keys(postsArchive).map((key) => {
-    if (postsArchive[key] !== undefined) return key
-  })
 
   return (
     <Base>
@@ -53,6 +36,34 @@ const Posts = () => {
           think.
         </p>
       </Intro>
+      {!hasPosts && <p>Sorry, we couldn't find the blog posts 😲</p>}
+      {hasPosts && <PostsContent posts={posts} />}
+    </Base>
+  )
+}
+
+const orderByDate = (posts) => {
+  return posts.sort((a, b) => +new Date(b["date"]) - +new Date(a["date"]))
+}
+
+const datesGroupByComponent = (dates, token) => {
+  return dates.reduce((val, obj) => {
+    let comp = moment(obj["date"]).format(token)
+    ;(val[comp] = val[comp] || []).push(obj)
+    return val
+  }, {})
+}
+
+const PostsContent = ({ posts }) => {
+  const postsSorted = orderByDate(posts)
+  const postsArchive = datesGroupByComponent(postsSorted, "YYYY-MM")
+
+  const datesArray = Object.keys(postsArchive).map((key) => {
+    if (postsArchive[key] !== undefined) return key
+  })
+
+  return (
+    <>
       <CollectionNavigation ids={datesArray} />
       <CollectionWrapper>
         {Object.keys(postsArchive).map((key, index) => (
@@ -63,7 +74,7 @@ const Posts = () => {
           />
         ))}
       </CollectionWrapper>
-    </Base>
+    </>
   )
 }
 
@@ -102,5 +113,15 @@ const CollectionNavigation = ({ ids }) => (
     ))}
   </CollectionMenu>
 )
+
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts
+  const data = await client.request(POSTS)
+  const posts = data.posts.nodes
+
+  return {
+    props: { posts }, // will be passed to the page component as props
+  }
+}
 
 export default Posts

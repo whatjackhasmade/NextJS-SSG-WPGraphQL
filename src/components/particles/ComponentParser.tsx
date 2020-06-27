@@ -48,36 +48,35 @@ const convertACFProps = (component) => {
 
 const ComponentParser = (props) => {
   let { content } = props
-
   if (!content) return null
 
-  const filteredComponents = content.filter(
-    (component) =>
-      !component || !isEmptyObject(component) || component.name !== null
+  const validComponents = content.filter(
+    (c) => !c || !isEmptyObject(c) || c.name !== null
   )
+  const hasComponents = validComponents && validComponents.length > 0
+  if (!hasComponents) return null
 
-  if (filteredComponents && filteredComponents.length > 0) {
-    const pageComponents = filteredComponents.map((component, index) => {
-      const Component = components[component.name]
+  const pageComponents = validComponents.map((component, index) => {
+    const { name, originalContent } = component
+    const Component = components[name]
 
-      if (!Component) return ParseHTML(component.originalContent)
+    if (!Component) return ParseHTML(originalContent)
 
-      component = convertACFProps(component)
+    component = convertACFProps(component)
 
-      return (
-        <Component
-          index={index}
-          key={`component-${randomID()}`}
-          {...component}
-          {...component.attributes}
-          {...component.data}
-        />
-      )
-    })
+    return (
+      <Component
+        index={index}
+        key={`component-${randomID()}`}
+        {...component}
+        {...component.attributes}
+        {...component.data}
+      />
+    )
+  })
 
-    if (pageComponents) return pageComponents
-  }
-  return null
+  if (!pageComponents) return null
+  return pageComponents
 }
 
 export default ComponentParser

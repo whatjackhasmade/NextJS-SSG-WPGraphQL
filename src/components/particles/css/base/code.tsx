@@ -6,7 +6,7 @@ const exportedCSS = css`
   code,
   pre {
     background: none;
-    background-color: var(--white);
+    color: var(--white);
     font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
     font-size: 1em;
     hyphens: none;

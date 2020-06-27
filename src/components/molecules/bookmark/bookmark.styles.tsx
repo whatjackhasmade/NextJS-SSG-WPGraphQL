@@ -1,6 +1,7 @@
 import styled from "styled-components"
+import { device } from "particles/mediaQueries"
 
-const StyledLink = styled.a`
+const StyledBookmark = styled.a`
   display: flex;
   margin: 32px 0;
 
@@ -15,7 +16,7 @@ const StyledLink = styled.a`
     border: 1px solid var(--grey400);
     text-decoration: none;
 
-    .link__description {
+    .bookmark__description {
       color: var(--black);
     }
   }
@@ -24,19 +25,24 @@ const StyledLink = styled.a`
     margin: 0;
   }
 
-  .link__content {
+  .bookmark__content {
     padding: 16px;
+
+    @media ${device.md} {
+      padding: 32px;
+    }
   }
 
-  .link__description {
+  .bookmark__description {
     margin-top: 8px;
+    max-width: 50ch;
 
     color: var(--grey600);
     font-size: 14px;
     transition: 0.2s color ease;
   }
 
-  .link__image {
+  .bookmark__image {
     min-width: 100px;
     position: relative;
     width: 100px;
@@ -53,9 +59,14 @@ const StyledLink = styled.a`
     }
   }
 
-  .link__title {
+  .bookmark__image--fallback {
+    height: 100px;
+    min-height: 100px;
+  }
+
+  .bookmark__title {
     font-size: 20px;
   }
 `
 
-export default StyledLink
+export default StyledBookmark

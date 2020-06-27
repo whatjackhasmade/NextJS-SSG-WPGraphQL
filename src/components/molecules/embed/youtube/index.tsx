@@ -23,7 +23,10 @@ type YouTubeProps = {
   children: any
 }
 
-const YouTubeBlock = ({ attributes: { url }, children }: YouTubeProps) => {
+const YouTubeBlock = (props: YouTubeProps) => {
+  const { children } = props
+  const url = props?.attributes?.url
+
   if (!url) {
     return (
       <YouTubeComponent>

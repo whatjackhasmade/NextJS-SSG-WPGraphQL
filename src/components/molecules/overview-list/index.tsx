@@ -19,9 +19,10 @@ const OverviewList = (props: Post_Postfields_Learn) => {
       </div>
       <ul className="overview-list__list">
         {validItems.map(({ id, value }) => {
-          if (!id) return <li>{value}</li>
+          const key = id
+          if (!id) return <li key={key}>{value}</li>
           return (
-            <li>
+            <li key={key}>
               <a href={`#${id}`}>{value}</a>
             </li>
           )

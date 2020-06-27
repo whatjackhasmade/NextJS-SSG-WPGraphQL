@@ -7,12 +7,7 @@ import POSTS from "queries/post/POSTS"
 
 import PostTemplate from "templates/post"
 
-interface PostItem {
-  id: string
-  slug: string
-}
-
-interface PostCollection extends Array<PostItem> {}
+interface PostCollection extends Array<Post> {}
 
 // This function gets called at build time
 export async function getStaticPaths() {

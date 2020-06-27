@@ -10,6 +10,15 @@ type BookmarkImageData = {
   ogTitle?: string
 }
 
+const validArray = (arrayToCompare) => {
+  if (!arrayToCompare) return false
+  let valid = true
+  valid = Array.isArray(arrayToCompare)
+  if (!valid) return false
+  valid = arrayToCompare.length > 0
+  return valid
+}
+
 const Bookmark = (props: AcfLinkBlockFields) => {
   const { url } = props
   const fallback = `/images/placeholder.png`
@@ -31,12 +40,15 @@ const Bookmark = (props: AcfLinkBlockFields) => {
   const ogTitle = data?.ogTitle
   if (!ogTitle) return null
 
-  const multipleImages = Array.isArray(ogImage) && ogImage.length > 0
-  const hasImage = ogImage || multipleImages
+  const hasMutiple = validArray(ogImage)
+  const hasImage = ogImage?.url || hasMutiple
+
+  let className = `bookmark__image`
+  if (!hasImage) className += ` bookmark__image--fallback`
 
   return (
     <StyledBookmark className="bookmark" href={url}>
-      <div className="bookmark__image">
+      <div className={className}>
         {hasImage && (
           <BookmarkImage alt={`Open Graph Image for ${url}`} image={ogImage} />
         )}
@@ -53,8 +65,10 @@ const Bookmark = (props: AcfLinkBlockFields) => {
 }
 
 const BookmarkImage = ({ alt, image }) => {
-  if (!image.length) return <img alt={alt} src={image.url} />
-  return <img alt={alt} src={image[0].url} />
+  const isSingle = !image.length
+  if (isSingle) return <img alt={alt} src={image.url} />
+  const [firstImage] = image
+  return <img alt={alt} src={firstImage.url} />
 }
 
 export default Bookmark

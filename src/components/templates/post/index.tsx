@@ -22,11 +22,6 @@ const PostTemplate = (props: Post) => {
   const { PostFields } = props
   const { learn, relatedPosts } = PostFields
 
-  // useEffect(() => {
-  //   // call the highlightAll() function to style our code blocks
-  //   Prism.highlightAll()
-  // })
-
   const lessons = learn.items
   const hasLessons = lessons && lessons.length > 0
   const overviewTitle = learn.title ? learn.title : "What you will learn"
